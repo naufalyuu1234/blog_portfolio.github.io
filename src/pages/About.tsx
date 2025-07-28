@@ -64,7 +64,7 @@ const AboutMePage = () => {
     name: "Naufal",
     role: "Front End Developer",
     email: "naufalyuu62@gmail.com",
-    profileImage: "/src/assets/nopal.jpeg",
+    profileImage: "/public/nopal.jpeg",
     socialMedia: [
       {
         name: "Instagram",

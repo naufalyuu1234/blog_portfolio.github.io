@@ -49,9 +49,9 @@ const TechStackPage = () => {
 
   return (
     <div className="mb-8">
-      <h2 className="text-center mb-4 font-bold text-4xl text-white ">
+      <h2 className="text-center mb-4 font-bold text-4xl font-bold mb-6 text-gray-900 dark:text-white">
         My {" "}
-        <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-pink-200 to-blue-200">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
           Tech Stack
         </span>
       </h2>
