@@ -18,22 +18,24 @@ import {
   useTransform,
   MotionValue,
 } from "framer-motion";
+import { SubscribeForm } from "./subscription/SubscribeForm";
 
 // Function Utama
 const DevJourneyLanding = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentTip, setCurrentTip] = useState(0);
+  const [isSubscribeFormVisible, setIsSubscribeFormVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollY } = useScroll();
   const backgroundY = useTransform(scrollY, [0, 500], [0, 150]);
-// Variable array learning tips
+  // Variable array learning tips
   const learningTips = [
     "Building projects while learning",
-    "Documenting every breakthrough",
-    "Sharing knowledge with others",
+    "Problem-solving and debugging",
+    "Focus on learning and development",
     "Embracing the debugging journey",
   ];
-// variable States
+  // variable States
   const stats = [
     {
       value: "50+",
@@ -42,7 +44,7 @@ const DevJourneyLanding = () => {
       icon: Code,
     },
     {
-      value: "12",
+      value: "8+",
       label: "Projects Built",
       color: "text-blue-600",
       icon: Rocket,
@@ -105,6 +107,7 @@ const DevJourneyLanding = () => {
             isVisible={isVisible}
             currentTip={currentTip}
             learningTips={learningTips}
+            onFollowClick={() => setIsSubscribeFormVisible(true)}
           />
 
           {/* Right Illustration */}
@@ -113,7 +116,33 @@ const DevJourneyLanding = () => {
 
         {/* Stats Section */}
         <StatsSection isVisible={isVisible} stats={stats} />
+
+        {/* Subscribe Form Section */}
       </div>
+
+      {/* Subscribe Form Modal */}
+      <AnimatePresence>
+        {isSubscribeFormVisible && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setIsSubscribeFormVisible(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="relative"
+              onClick={(e) => e.stopPropagation()} // Mencegah modal tertutup saat diklik di dalam form
+            >
+              <SubscribeForm onClose={() => setIsSubscribeFormVisible(false)} />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -308,10 +337,12 @@ const LeftContent = ({
   isVisible,
   currentTip,
   learningTips,
+  onFollowClick,
 }: {
   isVisible: boolean;
   currentTip: number;
   learningTips: string[];
+  onFollowClick: () => void;
 }) => (
   <motion.div
     className="space-y-8"
@@ -333,7 +364,7 @@ const LeftContent = ({
     <CTAButtons />
 
     {/* Follow Button */}
-    <FollowButton />
+    <FollowButton onClick={onFollowClick} />
   </motion.div>
 );
 
@@ -369,8 +400,7 @@ const WelcomeSection = () => (
     >
       Di sini gue bakal share perjalanan belajar gue sebagai seorang Front End
       Developer. Gue akan bagikan materi yang terstruktur, pake bahasa Indonesia
-      yang gampang dipahami dan nggak ribet — biar belajar coding jadi lebih
-      santai tapi tetap ngena!
+      yang gampang dipahami dan nggak ribet.
     </motion.p>
   </motion.div>
 );
@@ -490,7 +520,7 @@ const CTAButtons = () => (
 );
 
 // Enhanced Follow Button Component
-const FollowButton = () => (
+const FollowButton = ({ onClick }: { onClick: () => void }) => (
   <motion.div
     className="pt-4"
     initial={{ opacity: 0 }}
@@ -498,7 +528,8 @@ const FollowButton = () => (
     transition={{ delay: 1.4, duration: 0.6 }}
   >
     <motion.button
-      className="group bg-gray-800 text-white px-6 py-3 rounded-2xl font-medium shadow-lg flex items-center gap-2 relative overflow-hidden"
+      onClick={onClick}
+      className="group bg-gray-800 text-white px-6 py-3 rounded-2xl font-medium shadow-lg flex items-center gap-2 relative overflow-hidden no-underline"
       whileHover={{
         scale: 1.05,
         boxShadow: "0 15px 30px rgba(0,0,0,0.2)",

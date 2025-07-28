@@ -68,7 +68,7 @@ const AboutMePage = () => {
     socialMedia: [
       {
         name: "Instagram",
-        url: "https://www.instagram.com/naufalfauzan_20/",
+        url: "https://www.instagram.com/naufaru_kun?igsh=MWF1Znd6M3NicnNkDA==",
         icon: SiInstagram,
         gradient:
           "from-purple-100 to-blue-100 dark:from-purple-800 dark:to-blue-800",
@@ -77,7 +77,7 @@ const AboutMePage = () => {
       },
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/naufal-fauzan-b1b3b321b/",
+        url: "www.linkedin.com/in/muhammad-naufal-dzaky-ba77942a1",
         icon: SiLinkedin,
         gradient:
           "from-blue-100 to-indigo-100 dark:from-blue-800 dark:to-indigo-800",
@@ -86,7 +86,7 @@ const AboutMePage = () => {
       },
       {
         name: "GitHub",
-        url: "https://github.com/NaufalFauzan20",
+        url: "https://github.com/naufalyuu1234",
         icon: SiGithub,
         gradient:
           "from-pink-100 to-purple-100 dark:from-pink-800 dark:to-purple-800",
@@ -261,10 +261,13 @@ const CTAButton = ({
   setIsHovered: (hovered: boolean) => void;
 }) => (
   <div className="mb-8">
-    <button
+    <a
+      href="https://wa.me/6281285750876" // Ganti dengan nomor WhatsApp Anda jika berbeda
+      target="_blank"
+      rel="noopener noreferrer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2"
+      className="group bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 no-underline w-fit "
     >
       <span>Let's Work Together</span>
       <ChevronRight
@@ -272,7 +275,7 @@ const CTAButton = ({
           isHovered ? "translate-x-1" : ""
         }`}
       />
-    </button>
+    </a>
   </div>
 );
 
